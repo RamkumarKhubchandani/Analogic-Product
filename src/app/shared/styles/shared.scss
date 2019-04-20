@@ -110,10 +110,15 @@
     background-color: #4381f1 !important;
     color: black;
     height: 190px;
-    border: 1px solid #005aff;        
+    border: 1px solid #006eff !important;        
     color: white;
     text-shadow: none;
     padding-left: 10px;
+    outline-style: outset;
+    outline-width: thick;
+    outline-color: #4381f1;
+    border-radius: 0 !important;
+    text-align : center;
 
 }
 .col2{
@@ -121,38 +126,77 @@
     background-color: #f70e0ebf !important;
     color: black;
     height: 190px;
-    border: 1px solid #169e05;
+    border: 1px solid #f70e0ebf !important;
     color: white;
     text-shadow: none;
     padding-left: 10px;
+    outline-style: outset;
+    outline-width: thick;
+    outline-color: #f70e0ebf;
+    border-radius: 0 !important;
+    text-align : center;
 }
 .col3{
     margin-top: 10px;
     background-color: #288c08cf !important;
     color: black;
     height: 190px;
-    border: 1px solid #169e05;
+    border: 1px solid #288c08cf !important;
     color: white;
     text-shadow: none;
     padding-left: 10px;
+    outline-style: outset;
+    outline-width: thick;
+    outline-color: #288c08cf;
+    border-radius: 0 !important;
+    text-align : center;
 }
 .col4{
     margin-top: 10px;
     background-color: #f58007 !important;
     
     height: 190px;
-    border: 1px solid #a96e04 !important;
+    border: 1px solid #f58007 !important;
     color: white !important;
     text-shadow: none;
     padding-left: 10px;
+    outline-width: thick;
+    outline-style: outset;
+    outline-color: #f58007;
+    border-radius: 0 !important;
+    text-align : center;
 }
 .col5{
     margin-top: 10px;
     background-color: #6c1d94 !important;
     color: black;
     height: 210px;
-    border: 1px solid #1a1d1a;
+    border: 1px solid #6c1d94 !important;
     color: white;
     text-shadow: none;
     padding-left: 10px;
+    outline-width: thick;
+    outline-style: outset;
+    outline-color: #6c1d94;
+    border-radius: 0 !important;
+    text-align : center;
+}
+
+.keyvalue {
+    width :100%;
+}
+.keyItem {
+    display: inline-block;
+    text-align: right;
+    width: 45%;
+}
+.colon {
+    display: inline-block;
+    width: 5%;
+    text-align: center;
+}
+.valueItem {
+    display: inline-block;
+    width: 45%;
+    text-align: left;
 }
