@@ -6,8 +6,12 @@
     display : none;
 }
 .app-fullpage{
-    background-color: #a9b7a9 !important;
+    // background-color: #a9b7a9 !important;
+    background-image : url(../../assets/image/Home_BG.jpg);
     height: 100vh;
+    background-size:     cover;                    
+    background-repeat:   no-repeat;
+    background-position: center center;  
 }
 
 .col-md-12{
@@ -195,6 +199,22 @@
 
 // }
 
+.first-container{
+    background-size:     contain;                    
+    background-repeat:   no-repeat;
+    background-position: center center;  
+    background-color : transparent !important;        
+    box-shadow: none !important;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
 
 
 
