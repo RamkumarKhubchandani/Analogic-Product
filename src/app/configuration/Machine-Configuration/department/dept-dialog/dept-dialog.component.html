@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>{{dialog.title}} Department</h2>
+<form *ngIf="dialog.mode !== 'delete'; else deleteForm" [formGroup]="department" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+        <div class="department" fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="20px">
+            <div fxFlex="50%" fxFlex.gt-sm="100%">
+                <mat-form-field class="custom-form-field">
+                    <mat-select placeholder="Plant" formControlName="plantId">
+                        <mat-option *ngFor="let p of plants" [value]="p.id">{{p.plantName}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="department.get('plantId').hasError('required')">
+                        Plant is
+                        <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%" fxFlex.gt-sm="100%">
+                <mat-form-field class="custom-form-field">
+                    <input matInput placeholder="Enter Department Name" formControlName="deptName">
+                    <mat-error *ngIf="department.get('deptName').hasError('required')">
+                        Department is
+                        <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="department.get('deptName').hasError('pattern')">
+                        Enter valid
+                        <strong>department name</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" [disabled]="!department.valid || loading">{{dialog.btnCaptions.ok}}</button>
+        <button [disabled]="loading" mat-button mat-dialog-close>Cancel</button>
+        <app-spinner *ngIf="loading"></app-spinner>
+    </mat-dialog-actions>
+</form>
+
+
+<ng-template #deleteForm>
+    <mat-dialog-content>
+        Do you want to delete
+        <strong>{{dialog.details.deptName}}</strong>?
+    </mat-dialog-content>
+    <mat-dialog-actions [style.marginTop.px]="10">
+        <button mat-raised-button [disabled]="loading" (click)="update(dialog.details,dialog.mode)" [ngStyle]="{backgroundColor:'#FE3F5F',color:'#FFF'}">{{dialog.btnCaptions.ok}}</button>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <app-spinner *ngIf="loading"></app-spinner>
+    </mat-dialog-actions>
+</ng-template>

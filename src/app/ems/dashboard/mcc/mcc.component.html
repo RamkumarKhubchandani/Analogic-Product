@@ -1,0 +1,191 @@
+<div class="product machine-air-compressor">
+  <div fxLayout fxLayoutAlign="center">
+    <h2 class="mat-h2">MCC Dashboard</h2>
+  </div>
+  <selection dashboardtype="mcc_dashboard" (select)="onSelect($event)"></selection>
+  <div fxLayout fxLayoutAlign="center" *ngIf="loadedSpinner">
+    <app-spinner></app-spinner>
+  </div>
+
+  <div class="col-md-12">
+    <div class="col-md-6">
+      <div class="thumbnail col1">
+        <h4>Monitoring Parameters</h4>
+        <div class="keyValue">
+            <div class="keyItem"><span>Voltage(Vrms)</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["voltage"]'> {{mccData["voltage"]}} </span></div>
+        </div>
+        <div class="keyValue">
+            <div class="keyItem"><span>Current(Irms)</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["current"]'> {{mccData["current"]}} </span></div>
+        </div>
+        <div class="keyValue">
+            <div class="keyItem"><span>Frequency(Hz)</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["frequency"]'> {{mccData["frequency"]}} </span></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="thumbnail col2">
+        <h4>Power Consumtion</h4>
+        <div class="keyValue">
+            <div class="keyItem"><span>Active Power(KVA)</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["active_power"]'> {{mccData["active_power"]}} </span></div>
+        </div>
+        <div class="keyValue">
+            <div class="keyItem"><span>Reactive Power(kVAR)</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["reactive_power"]'> {{mccData["reactive_power"]}} </span></div>
+        </div>
+        <div class="keyValue">
+            <div class="keyItem"><span>Apparent Power(kVA) </span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["apparent_power"]'> {{mccData["apparent_power"]}} </span></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="thumbnail col3">
+        <h4>Power Quality Data</h4>
+        <div class="keyValue">
+            <div class="keyItem"><span>Power Factor</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["power_factor"]'> {{mccData["power_factor"]}} </span></div>
+        </div>
+        <div class="keyValue">
+            <div class="keyItem"><span>THD</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["thd"]'> {{mccData["thd"]}} </span></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="thumbnail col4">
+        <h4>Demand Analysis</h4>
+        <div class="keyValue">
+            <div class="keyItem"><span>Average Demand(kVA)</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["average_demand"]'> {{mccData["average_demand"]}} </span></div>
+        </div>
+        <div class="keyValue">
+            <div class="keyItem"><span>Peak Demand(kVA)</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["peak_demand"]'> {{mccData["peak_demand"]}} </span></div>
+        </div>
+        <div class="keyValue">
+            <div class="keyItem"><span>Demand(kVA)</span></div> 
+            <div class="colon"><span> : </span></div>
+            <div class="valueItem"><span ng-if='mccData["demand"]'> {{mccData["demand"]}} </span></div>
+        </div>
+      </div>
+
+    </div>
+    <!-- <div class="col-md-6">
+          <div class="thumbnail col5">
+            <h4>Machine Status :</h4>
+            <p>Running Hours : <span ng-if='mccData["running_hours"]'>{{mccData["running_hours"]}}</span> </p>
+            <p>Idle Hours : <span ng-if='mccData["idle_hours"]'>{{mccData["idle_hours"]}}</span> </p>
+            <p>Stop Hours : <span ng-if='mccData["stop_hours"]'>{{mccData["stop_hours"]}}</span> </p>
+            <p>Stop Pages : <span ng-if='mccData["number_of_stopages"]'>{{mccData["number_of_stopages"]}}</span> </p>
+            <p>Current Status : <span ng-if='mccData["current_status"]'>{{mccData["current_status"]}}</span> </p> -->
+    <!-- <p>Current : <span ng-if='mccData["motor_current"]'>{{mccData["motor_current"]}}</span> </p> -->
+    <!-- <span ng-if='mccData["specific_power_consumption"]'>{{mccData["specific_power_consumption"] | number : '1.2-2'}}</span> -->
+    <!-- </div>
+
+      </div> -->
+  </div>
+
+
+
+</div>
+<div class="col-md-12">
+  <h3>Monitoring Parameters</h3>
+  <div class="chart-content">
+    <canvas baseChart *ngIf="lineChartData" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+      [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
+  </div>
+
+
+</div>
+
+<div class="col-md-12">
+  <h3>Power Data(page 1)</h3>
+  <div class="chart-content">
+    <canvas baseChart *ngIf="lineChartPowerDataPG1" [datasets]="lineChartPowerDataPG1" [labels]="lineChartLabels"
+      [options]="lineChartOptions" [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
+  </div>
+
+
+</div>
+
+<!-- <div class="col-md-12">
+  <h3>Power Data(page 2)</h3>
+  <div class="chart-content">
+    <canvas baseChart *ngIf="lineChartPowerDataPG1" [datasets]="lineChartPowerDataPG1" [labels]="lineChartLabels"
+      [options]="lineChartOptions" [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
+  </div>
+
+
+</div> -->
+
+<div class="col-md-12">
+  <h3>Power Quality Data</h3>
+  <div class="chart-content">
+    <canvas baseChart *ngIf="lineChartPowerQualityData" [datasets]="lineChartPowerQualityData" [labels]="lineChartLabels"
+      [options]="lineChartOptions" [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <h3>Demand Analysis</h3>
+  <div class="chart-content">
+    <canvas baseChart *ngIf="lineChartDemandAnalysisData" [datasets]="lineChartDemandAnalysisData" [labels]="lineChartLabels"
+      [options]="lineChartOptions" [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <mat-table #aircompressortable [dataSource]="dataSource">
+
+    <ng-container matColumnDef="{{header.value}}" *ngFor="let header of headerWithColumns">
+      <mat-header-cell *matHeaderCellDef> {{header.headers}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[header.value]}} </mat-cell>
+    </ng-container>
+    <!-- Position Column -->
+
+    <!-- <ng-container matColumnDef="position">
+    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+  </ng-container> -->
+
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container> -->
+
+    <!-- Weight Column -->
+    <!-- <ng-container matColumnDef="weight">
+    <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+  </ng-container> -->
+
+    <!-- Symbol Column -->
+    <!-- <ng-container matColumnDef="symbol">
+    <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+  </ng-container> -->
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+  <mat-paginator showFirstLastButtons [ngStyle]="{'color': '#3e6ceb','font-size':'15px','font-weigth':'bold'}"
+    [pageSize]="5" [pageSizeOptions]="[5,10,15, 25,30]"></mat-paginator>
+</div>

@@ -1,0 +1,128 @@
+<div class="product machine-air-compressor"  >
+  <div fxLayout fxLayoutAlign="center">
+      <h2 class="mat-h2">Dashboard Compressor</h2>
+  </div>
+ <selection dashboardtype="air_compressor_dashboard" (select)="onSelect($event)"></selection>
+  <div fxLayout fxLayoutAlign="center" *ngIf="loadedSpinner">
+      <app-spinner></app-spinner>
+  </div>
+
+  <div class="col-md-12" *ngIf='airData["total_air_flow"] || !loadedSpinner'>
+      <ng-template #other_content>No Data</ng-template>
+      <div class="col-md-6">
+          <div class="thumbnail col1">
+              <h4>Operational Data</h4>
+              <p>Total Air Flow : <span *ngIf='airData["total_air_flow"] && airData["total_air_flow"]!="";else other_content'>{{airData["total_air_flow"]}}</span> </p>
+              <p>Compressed Air flow : <span ng-if='airData["total_air_compressed"]'>{{airData["total_air_compressed"]}}</span> </p>
+              
+          </div>
+      
+      </div>
+      <div class="col-md-6">
+          <div class="thumbnail col2">
+            <h4>Energy Data :</h4>
+            <p>Power Consumption : <span ng-if='airData["total_energy_consumed"]'>{{airData["total_energy_consumed"]}}</span> </p>
+            <p>Current : <span ng-if='airData["motor_current"]'>{{airData["motor_current"]}}</span> </p>
+            <!-- <span ng-if='airData["specific_power_consumption"]'>{{airData["specific_power_consumption"] | number : '1.2-2'}}</span> -->
+          </div>
+      
+      </div>
+      <div class="col-md-6">
+          <div class="thumbnail col3">
+            <h4>Efficiency Data :</h4>
+            <p>Specific Power Consumption : <span ng-if='airData["specific_power_consumption"]'>{{airData["specific_power_consumption"]}}</span> </p>                
+          </div>
+      
+      </div>
+      <div class="col-md-6 alaram-ele" (click) ="goTo('machinealaram')" >
+          <div class="thumbnail col4">
+            <h4>Alarms :</h4>
+            <p>No of Trips : <span ng-if='airData["trip"]'>{{airData["trip"]}}</span> </p>
+            <!-- <p>Current : <span ng-if='airData["motor_current"]'>{{airData["motor_current"]}}</span> </p> -->
+            <!-- <span ng-if='airData["specific_power_consumption"]'>{{airData["specific_power_consumption"] | number : '1.2-2'}}</span> -->
+          </div>
+      
+      </div>
+      <div class="col-md-6 alaram-ele" (click) ="goTo('machinestatus')">
+          <div class="thumbnail col5">
+            <h4>Machine Status :</h4>
+            <p>Running Hours : <span ng-if='airData["running_hours"]'>{{airData["running_hours"]}}</span> </p>
+            <p>Idle Hours : <span ng-if='airData["idle_hours"]'>{{airData["idle_hours"]}}</span> </p>
+            <p>Stop Hours : <span ng-if='airData["stop_hours"]'>{{airData["stop_hours"]}}</span> </p>
+            <p>Stop Pages : <span ng-if='airData["number_of_stopages"]'>{{airData["number_of_stopages"]}}</span> </p>
+            <p>Current Status : <span ng-if='airData["current_status"]'>{{airData["current_status"]}}</span> </p>
+            <!-- <p>Current : <span ng-if='airData["motor_current"]'>{{airData["motor_current"]}}</span> </p> -->
+            <!-- <span ng-if='airData["specific_power_consumption"]'>{{airData["specific_power_consumption"] | number : '1.2-2'}}</span> -->
+          </div>
+      
+      </div>
+  </div>
+  
+  
+<div class="col-md-12" *ngIf='!airData["total_air_flow"] && !loadedSpinner'>
+   <div class="no-record">
+        No Records Found
+   </div>
+</div>
+</div>
+<ng-template #other_content_found class="no-record">No Records Found</ng-template>
+<div class="col-md-12" *ngIf='!loadedSpinner'>
+<h3>Production Data- Compressor</h3>
+<div class="chart-content">
+<canvas baseChart *ngIf="lineChartData" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
+</div>
+
+
+</div>
+
+<div class="col-md-12" *ngIf='!loadedSpinner'>
+<h3>Energy Data - Compressor</h3>
+<div class="chart-content"  >
+    <!-- *ngIf='barChartData && !loadedSpinner;else other_content_found' -->
+<canvas baseChart *ngIf="barChartData" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [colors]="chartColors" chartType="bar"></canvas>
+</div>
+
+
+</div>
+
+<div class="mat-elevation-z8" *ngIf='!loadedSpinner'>
+<mat-table #aircompressortable [dataSource]="dataSource" *ngIf="dataSource.data.length && !loadedSpinner" >
+  
+  <ng-container matColumnDef="{{header.value}}" *ngFor="let header of headerWithColumns">
+    <mat-header-cell *matHeaderCellDef> {{header.headers}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element[header.value]}} </mat-cell>
+  </ng-container>
+  <!-- Position Column -->
+
+  <!-- <ng-container matColumnDef="position">
+    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+  </ng-container> -->
+
+  <!-- Name Column -->
+  <!-- <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container> -->
+
+  <!-- Weight Column -->
+  <!-- <ng-container matColumnDef="weight">
+    <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+  </ng-container> -->
+
+  <!-- Symbol Column -->
+  <!-- <ng-container matColumnDef="symbol">
+    <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+  </ng-container> -->
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<div *ngIf="dataSource.data.length == 0" class="no-record">No Records found</div>
+<hr>
+
+<!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+<mat-paginator showFirstLastButtons [ngStyle]="{'color': '#3e6ceb','font-size':'15px','font-weigth':'bold'}" [pageSize]="10" [pageSizeOptions]="[5,10,15, 25,30]"></mat-paginator>
+</div>

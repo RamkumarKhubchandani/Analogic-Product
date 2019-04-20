@@ -1,0 +1,93 @@
+<div fxLayout fxLayoutAlign="center">
+  <h2 class="mat-h2">Cooling tower</h2>
+</div>
+<div class="production main-column">
+        <report-form type="cooling_tower_report" flag="false" (select)="onSelect($event)"></report-form>
+        <div fxLayout fxLayoutAlign="center" *ngIf="loadedSpinner">
+            <app-spinner></app-spinner>
+        </div>
+
+        <div class="col-md-12" *ngIf='airData["operating_kcal_hr"] || !loadedSpinner'>
+          <div class="col-md-6">
+            <div class="thumbnail col1">
+                <h4>Operational Data</h4>
+                <p>Operating Kcal/Hr  : <span ng-if='airData["operating_kcal_hr"]'>{{airData["operating_kcal_hr"]}}</span> </p>
+                <p>Cooling Capacity  : <span ng-if='airData["cooling_capacity"]'>{{airData["cooling_capacity"]}}</span> </p>
+                <p>Flow rate of water(GPH)   : <span ng-if='airData["flow_rate_water"]'>{{airData["flow_rate_water"]}}</span> </p>
+                
+            </div>
+        
+        </div>
+        <div class="col-md-6">
+            <div class="thumbnail col2">
+              <h4>Energy Data :</h4>
+              <p>Fan Energy consumption  : <span ng-if='airData["fan_energy_consumption"]'>{{airData["fan_energy_consumption"]}}</span> </p>
+              <p>Pump Energy consumption  : <span ng-if='airData["pump_energy_consumption"]'>{{airData["pump_energy_consumption"]}}</span> </p>
+              <p>Fan current  : <span ng-if='airData["fan_current"]'>{{airData["fan_current"]}}</span> </p>
+              <p>pump Current  : <span ng-if='airData["pump_current"]'>{{airData["pump_current"]}}</span> </p>
+            </div>
+        
+        </div>
+        <div class="col-md-6">
+            <div class="thumbnail col3">
+              <h4>Efficiency Data :</h4>
+              <p>Cooling tower efficiency  : <span ng-if='airData["cooling_tower_efficiency"]'>{{airData["cooling_tower_efficiency"]}}</span> </p>                
+            </div>
+        
+        </div>
+        <div class="col-md-6 alaram-ele" (click) ="goTo('machinereportalaram')">
+            <div class="thumbnail col4">
+              <h4>Alarms :</h4>
+              <p>No of Trips : <span ng-if='airData["trip"]'>{{airData["fan_trip"]}}</span> </p>
+              <p>No. of Pump Trip  : <span ng-if='airData["pump_trip"]'>{{airData["pump_trip"]}}</span> </p>
+            </div>
+        
+        </div>  
+        </div>
+</div>
+<div class="col-md-12" *ngIf='!airData["operating_kcal_hr"] || !loadedSpinner'>
+    <div class="no-record">
+        No Records Found
+    </div>
+</div>
+<div class="mat-elevation-z8" *ngIf='!loadedSpinner'>
+  <mat-table #aircompressortable [dataSource]="dataSource" *ngIf="dataSource.data.length">
+      <ng-container matColumnDef="{{header.value}}" *ngFor="let header of headerWithColumns">
+          <mat-header-cell *matHeaderCellDef> {{header.headers}} </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element[header.value]}} </mat-cell>
+        </ng-container>
+    <!-- Position Column -->
+    <!-- <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    </ng-container> -->
+
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container> -->
+
+    <!-- Weight Column -->
+    <!-- <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+    </ng-container> -->
+
+    <!-- Symbol Column -->
+    <!-- <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    </ng-container> -->
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <div *ngIf="dataSource.data.length == 0" class="no-record">No Records found</div>
+
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+  <mat-paginator showFirstLastButtons [ngStyle]="{'color': '#3e6ceb','font-size':'15px','font-weigth':'bold'}" [pageSize]="10" [pageSizeOptions]="[5,10,15, 25,30]"></mat-paginator>
+</div>
+
+
