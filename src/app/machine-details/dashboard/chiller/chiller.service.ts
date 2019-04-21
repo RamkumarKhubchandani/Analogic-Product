@@ -36,7 +36,7 @@ export class ChillerService {
     
   }
   getColumn(machineId:string) {
-    return  this.rest.get(`generic/genericColumns/${machineId},operational_data`);
+    return  this.rest.get(`generic/genericColumns/${machineId},all`);
 
   }
   getSummary(machineId:string) {
