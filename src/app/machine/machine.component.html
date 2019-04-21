@@ -1,7 +1,7 @@
 <div class="machine">
     <div fxLayout fxLayoutAlign="center"><h2 class="mat-h2">Machine Status</h2></div>
 
-    <selection dashboardtype="ums_machine_status" (select)="onSelect($event)"></selection>
+    <selection dashboardtype="pms_machine_status" (select)="onSelect($event)"></selection>
     
     <div fxLayout fxLayoutAlign="center" *ngIf="!loaded">
       <app-spinner></app-spinner>
