@@ -55,6 +55,21 @@ export class SelectionComponent implements OnInit {
            data && data[0] && data.map(row => {
               this.pageType.push(row)
            })
+           this.insight.pagetype=data[0].page_type;
+           this.dbType = data[0].page_type;
+           this.selection.getdafaultfilter(this.insight.pagetype).subscribe(
+            data => {  
+              if (data) { 
+                this.insight.plant=data['plantId'];
+                this.insight.department=data['deptId'];
+                this.insight.assembly=data['assemblyId'];
+                this.insight.machine=data['id'];
+                this.onDefaultValue(this.insight.plant,this.insight.department, this.insight.assembly, this.insight.machine)
+              }
+            
+            },
+            err => this.handleError(err)
+          );
            
         },
         err => this.handleError(err)
@@ -226,7 +241,7 @@ class Insight {
   department:number;
   assembly:number;
   machine:number;
-  pagetype:number;
+  pagetype:string;
 }
 
 @NgModule({
