@@ -92,6 +92,11 @@ export class MonitoringParamComponent implements OnInit {
           // this.getColumnDetails(data["associated_name"]);
           // this.getMonitorDetails(data["associated_name"]);    
           // this.getSummaryDetails(data["associated_name"]);
+          this.energy.getColumn(data["associated_name"],"all").subscribe(data => {
+            this.headerWithColumns = data;
+              this.displayedColumns = this.headerWithColumns.map(row => row.value);
+
+           })
           this.getEnergyParamters(data["associated_name"],e.dbType);
           this.machineName = data["associated_name"];
       }
@@ -124,10 +129,13 @@ export class MonitoringParamComponent implements OnInit {
         this.loadedSpinner = false;
     }
     else{
+      let dummyData =  [{data : [{}],label : "Null"}]
+      this.chartData = dummyData;
       if (this.chart !== undefined) {
+
         this.chart.chart.destroy();
         this.chart.chart = 0;
-        this.chart.datasets = [];
+        this.chart.datasets = dummyData;
               // this.chart.labels = this.labels;
         this.chart.ngOnInit();
       }
@@ -148,6 +156,7 @@ export class MonitoringParamComponent implements OnInit {
   }
 
   private getEnergyParamters(machineName: string,dbType : string) {
+    this.selectedParameter.length = 0;
     // if (this.paramList.length != 0) {
     //   while (this.paramList.length > 0) {
     //     this.paramList.pop();
@@ -182,6 +191,7 @@ export class MonitoringParamComponent implements OnInit {
         })
         filterData && filterData[0] && filterData.map(row => {
           this.paramList.push(row);
+          this.selectedParameter.push(row.value);
         })
         // this.headerWithColumns = data;
         // this.displayedColumns = this.headerWithColumns.map(row => row.value);
@@ -195,8 +205,8 @@ export class MonitoringParamComponent implements OnInit {
         let tableHeader = data.filter(row => {
           return row.value != "start_time" || row.value != "end_time"
         })
-           this.headerWithColumns = tableHeader;
-          this.displayedColumns = this.headerWithColumns.map(row => row.value);
+          //  this.headerWithColumns = tableHeader;
+          // this.displayedColumns = this.headerWithColumns.map(row => row.value);
 
     })
 
@@ -213,6 +223,8 @@ export class MonitoringParamComponent implements OnInit {
     );
     this.energy.getChartDataNew(machineName) .subscribe(data => {
         this.chartAPIData = data;
+        this.Data = this.energy.getChartLabels(this.chartAPIData,this.selectedParameter);
+        this.chartData = this.Data;
         // let chart = this.energy.getChartOptions();    
         // this.chartOptions = chart.options;
         // this.chartColors = chart.colors;
@@ -257,6 +269,7 @@ export class MonitoringParamComponent implements OnInit {
     this.chartLabels = chart.labels;
     this.chartOptions = chart.options;
     this.chartLabels = chart.labels;
+    this.chartColors = chart.colors;
   }
 
   private getTableData(paramList) {

@@ -48,7 +48,7 @@ export class MonitoringParamService {
     value && value[0] && value.map(row => {
 
         let d = [];
-        let x1 : number[] = this.getEmptyArray(24);
+        let x1 : number[] = []; //this.getEmptyArray(24);
         data.map(c => {
           const start = new Date(c["start_time"]).getHours();
           x1[start] = c[row];
@@ -108,14 +108,40 @@ export class MonitoringParamService {
     return {
       colors: [
         {
-          backgroundColor: "#0066ff"
+          borderColor: "#0066ff",
+          backgroundColor:'transparent',
         },
         {
-          backgroundColor: "#d9534f"
+          borderColor: "#d9534f",
+          backgroundColor:'transparent',
+        },
+        {
+          borderColor: "green",
+          backgroundColor:'transparent',
+        },
+        {
+          borderColor: "purple",
+          backgroundColor:'transparent',
+        },
+        {
+          borderColor: "blue",
+          backgroundColor:'transparent',
+        },
+        {
+          borderColor: "yellow"
+        },
+        {
+          borderColor: "orange"
         }
       ],
       labels: this.getHours(24),//this.nextInterval,
       options: {
+        bezierCurve : false,
+        elements: {
+          line: {
+              tension: 0
+          }
+        },
         responsive:true,
         scales: {
           xAxes: [
@@ -136,13 +162,8 @@ export class MonitoringParamService {
               }
             }
           ]
-        },
-        elements: {
-          line: {
-            tension: 0,
-            fill: false
-          }
         }
+        
       }
     };
   };
