@@ -122,15 +122,7 @@
               <div class="colon"><span> : </span></div>
               <div class="valueItem"><span ng-if='airData["feed_water_pump_current"]'>{{airData["feed_water_pump_current"] | number : '1.2-2'}}</span></div>
           </div>
-          <!-- <p>ID fan Consumption : <span ng-if='airData["id_fan_consumption"]'>{{airData["id_fan_consumption"]}}</span> </p>
-          <p>FD fan consumption : <span ng-if='airData["fd_fan_consumption"]'>{{airData["fd_fan_consumption"]}}</span> </p>
-          <p>Feed water pump consumption : <span ng-if='airData["feed_water_pump_consumption"]'>{{airData["feed_water_pump_consumption"]}}</span> </p>
-          <p>ID fan current : <span ng-if='airData["id_fan_current"]'>{{airData["id_fan_current"]}}</span> </p>
-          <p>ID fan current  : <span ng-if='airData["id_fan_current "]'>{{airData["id_fan_current "]}}</span> </p> -->
-          <!-- <p>FD fan Current  : <span ng-if='airData["fd_fan_current"]'>{{airData["fd_fan_current"]}}</span> </p>
-          <p>Feed water Current  : <span ng-if='airData["feed_water_pump_current"]'>{{airData["feed_water_pump_current"]}}</span> </p> --> -->
-          
-          <!-- <span ng-if='airData["specific_power_consumption"]'>{{airData["specific_power_consumption"] | number : '1.2-2'}}</span> -->
+         
         </div>
     
     </div>
@@ -186,14 +178,14 @@
  
 </div>
 
-<div class="col-md-12" *ngIf='!airData["steam_produced"] || !loadedSpinner'>
+<div class="col-md-12" *ngIf='!airData["steam_produced"] && !loadedSpinner'>
   <div class="no-record">
        No Records Found
   </div>
 </div>
 <ng-template #other_content_found class="no-record">No Records Found</ng-template>
 <div class="col-md-12" *ngIf='!loadedSpinner'>
-    <h3>Production Data- Boiler</h3>
+    <h3>Production Data</h3>
     <div class="chart-content" *ngIf='lineChartData;else other_content_found'>
       <canvas baseChart *ngIf="lineChartData" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
     </div>

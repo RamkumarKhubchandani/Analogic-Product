@@ -72,23 +72,23 @@
           </div>
       
       </div>
-      <div class="col-md-6 alaram-ele" (click) ="goTo('machinestatus')">
+      <div class="col-md-6 alaram-ele last-box" (click) ="goTo('machinestatus')">
           <div class="thumbnail col5">
             <h4>Machine Status :</h4>
             <div class="keyValue">
                 <div class="keyItem"><span>Running Hours</span></div> 
                 <div class="colon"><span> : </span></div>
-                <div class="valueItem"><span ng-if='airData["running_hours"]'>{{airData["running_hours"] | number : '1.2-2' }}</span></div>
+                <div class="valueItem"><span ng-if='airData["running_hours"]'>{{airData["running_hours"]  }}</span></div>
             </div>
             <div class="keyValue">
                 <div class="keyItem"><span>Idle Hours</span></div> 
                 <div class="colon"><span> : </span></div>
-                <div class="valueItem"><span ng-if='airData["idle_hours"]'>{{airData["idle_hours"] | number : '1.2-2' }}</span></div>
+                <div class="valueItem"><span ng-if='airData["idle_hours"]'>{{airData["idle_hours"]  }}</span></div>
             </div>
             <div class="keyValue">
                 <div class="keyItem"><span>Stop Hours</span></div> 
                 <div class="colon"><span> : </span></div>
-                <div class="valueItem"><span ng-if='airData["stop_hours"]'>{{airData["stop_hours"] | number : '1.2-2' }}</span></div>
+                <div class="valueItem"><span ng-if='airData["stop_hours"]'>{{airData["stop_hours"]  }}</span></div>
             </div>
             <div class="keyValue">
                 <div class="keyItem"><span>Stop Pages</span></div> 
@@ -98,7 +98,7 @@
             <div class="keyValue">
                 <div class="keyItem"><span>Current Status</span></div> 
                 <div class="colon"><span> : </span></div>
-                <div class="valueItem"><span ng-if='airData["current_status"]'>{{airData["current_status"] | number : '1.2-2' }}</span></div>
+                <div class="valueItem"><span ng-if='airData["current_status"]'>{{airData["current_status"]  }}</span></div>
             </div>
             
             <!-- <p>Current : <span ng-if='airData["motor_current"]'>{{airData["motor_current"]}}</span> </p> -->

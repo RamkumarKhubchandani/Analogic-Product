@@ -63,13 +63,13 @@ export class BoilerService {
   //  const x7 : string [] = [];
   //  const x8 : string [] = [];
   //  const x9 : string [] = [];
-  const x3 : number[] = this.getEmptyArray(24);
-   const x4 : number[] = this.getEmptyArray(24);
-   const x5 : number[] = this.getEmptyArray(24);
-   const x6 : number[] = this.getEmptyArray(24);
-   const x7 : number[] = this.getEmptyArray(24);
-   const x8 : number[] = this.getEmptyArray(24);
-   const x9 : number[] = this.getEmptyArray(24);
+  const x3 : number[] = [];//this.getEmptyArray(24);
+   const x4 : number[] = [];//this.getEmptyArray(24);
+   const x5 : number[] = [];//this.getEmptyArray(24);
+   const x6 : number[] = [];//this.getEmptyArray(24);
+   const x7 : number[] = [];//this.getEmptyArray(24);
+   const x8 : number[] = [];//this.getEmptyArray(24);
+   const x9 : number[] = [];//this.getEmptyArray(24);
     this.lineLabel.length = 0;
       map(data, (item: any) => {
         const start = new Date(item["start_time"]).getHours();
@@ -111,25 +111,32 @@ export class BoilerService {
     return {
       colors: [
         {
-          borderColor: "#0066ff"
+          borderColor: "#0066ff",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "#d9534f"
+          borderColor: "#d9534f",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "green"
+          borderColor: "green",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "purple"
+          borderColor: "purple",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "blue"
+          borderColor: "blue",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "yellow"
+          borderColor: "yellow",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "orange"
+          borderColor: "orange",
+          backgroundColor:'transparent',
         }        
       ],
       labels: this.getHours(24), //this.lineLabel,
@@ -147,7 +154,7 @@ export class BoilerService {
               min : 0
             },
             scaleLabel: {
-              display: true,
+              display: false,
               labelString: 'Production Data',
               fontColor: '#3e6ceb',
               min : 0              
@@ -257,7 +264,7 @@ export class BoilerService {
               min : 0
             },
             scaleLabel: {
-              display: true,
+              display: false,
               labelString: 'Energy Consumption',
               fontColor: '#3e6ceb',
               min : 0              

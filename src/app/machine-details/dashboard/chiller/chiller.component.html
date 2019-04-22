@@ -117,7 +117,7 @@
  
 </div>
 
-<div class="col-md-12" *ngIf='!airData["net_heat_removed"] || !loadedSpinner'>
+<div class="col-md-12" *ngIf='!airData["net_heat_removed"] && !loadedSpinner'>
   <div class="no-record">
        No Records Found
   </div>
@@ -162,7 +162,7 @@
 
 
       <div class="col-md-12" *ngIf='!loadedSpinner'>
-          <h3>Energy Data- Chiller</h3>
+          <h3>Efficiency data- Chiller</h3>
           <div class="chart-content" *ngIf='lineChartDataSecond;else other_content_found'>
             <canvas baseChart *ngIf="lineChartDataSecond" [datasets]="lineChartDataSecond" [labels]="lineChartLabels" [options]="lineChartOptions" [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
           </div>

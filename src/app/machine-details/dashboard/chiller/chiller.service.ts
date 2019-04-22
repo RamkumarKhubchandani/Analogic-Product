@@ -58,9 +58,9 @@ export class ChillerService {
   //  const x4 : string [] = [];
   //  const x5 : string [] = [];
 
-  const x3 : number[] = this.getEmptyArray(24);
-  const x4 : number[] = this.getEmptyArray(24);
-  const x5 : number[] = this.getEmptyArray(24);
+  const x3 : number[] = [];//this.getEmptyArray(24);
+  const x4 : number[] = [];//this.getEmptyArray(24);
+  const x5 : number[] = [];//this.getEmptyArray(24);
    const x6 : string [] = [];
    const x7 : string [] = [];
    const x8 : string [] = [];
@@ -103,9 +103,9 @@ export class ChillerService {
   //  const x3 : string [] = [];
   //  const x4 : string [] = [];
   //  const x5 : string [] = [];
-  const x3 : number[] = this.getEmptyArray(24);
-   const x4 : number[] = this.getEmptyArray(24);
-   const x5 : number[] = this.getEmptyArray(24);
+  const x3 : number[] = [];//this.getEmptyArray(24);
+   const x4 : number[] = [];//this.getEmptyArray(24);
+   const x5 : number[] = [];//this.getEmptyArray(24);
    const x6 : string [] = [];
    const x7 : string [] = [];
    const x8 : string [] = [];
@@ -146,25 +146,32 @@ export class ChillerService {
     return {
       colors: [
         {
-          borderColor: "#0066ff"
+          borderColor: "#0066ff",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "#d9534f"
+          borderColor: "#d9534f",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "green"
+          borderColor: "green",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "purple"
+          borderColor: "purple",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "blue"
+          borderColor: "blue",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "yellow"
+          borderColor: "yellow",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "orange"
+          borderColor: "orange",
+          backgroundColor:'transparent',
         }        
       ],
       labels: this.getHours(24),//this.lineLabel,
@@ -182,7 +189,7 @@ export class ChillerService {
               min : 0
             },
             scaleLabel: {
-              display: true,
+              display: false,
               labelString: 'Production Data',
               fontColor: '#3e6ceb',
               min : 0              
@@ -288,7 +295,7 @@ export class ChillerService {
               min : 0
             },
             scaleLabel: {
-              display: true,
+              display: false,
               labelString: 'Energy Consumption',
               fontColor: '#3e6ceb',
               min : 0              

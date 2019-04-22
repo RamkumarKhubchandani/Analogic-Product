@@ -38,7 +38,7 @@ export class BoilerReportsComponent implements OnInit {
   interval: number;
   datasetLength: number;
   loaded: boolean = true;
-  loadedSpinner: boolean = false;
+  loadedSpinner: boolean = true;
   Errormsg: boolean = true;
   errMessage: string;
   data: any[] = [];

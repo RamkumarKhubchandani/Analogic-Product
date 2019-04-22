@@ -97,7 +97,7 @@
  
 </div>
 
-  <div class="col-md-12" *ngIf='!airData["operating_kcal_hr"] || !loadedSpinner'>
+  <div class="col-md-12" *ngIf='!airData["operating_kcal_hr"] && airData["cooling_capacity"] && !loadedSpinner'>
     <div class="no-record">
         No Records Found
     </div>
@@ -105,7 +105,7 @@
 <ng-template #other_content_found class="no-record">No Records Found</ng-template>
 
 <div class="col-md-12" *ngIf='!loadedSpinner'>
-  <h3>Production Data- Chiller</h3>
+  <h3>Production Data- Cooling Tower</h3>
   <div class="chart-content" *ngIf='lineChartData;else other_content_found'>
     <canvas baseChart *ngIf="lineChartData" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
   </div>
@@ -114,7 +114,7 @@
 </div>
 
 <div class="col-md-12" *ngIf='!loadedSpinner'>
-    <h3>Energy Data - Chiller</h3>
+    <h3>Energy Data - Cooling Tower</h3>
     <div class="chart-content" *ngIf='barChartDataEC;else other_content_found'>
       <canvas baseChart *ngIf="barChartDataEC" [datasets]="barChartDataEC" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [colors]="chartColors" chartType="bar"></canvas>
     </div>
@@ -123,14 +123,14 @@
   </div>
 
   <div class="col-md-12" *ngIf='!loadedSpinner'>
-    <h3>Energy Data- Chiller</h3>
+    <h3> Efficiency data</h3>
     <div class="chart-content" *ngIf='lineChartDataSecond;else other_content_found'>
       <canvas baseChart *ngIf="lineChartDataSecond" [datasets]="lineChartDataSecond" [labels]="lineChartLabels" [options]="lineChartOptions" [legend]="lineChartLegend" [colors]="lineChartColors" chartType="line"></canvas>
     </div>
   
   
   </div>
-<div class="mat-elevation-z8" *ngIf='!loadedSpinner'>
+<div class="mat-elevation-z8 example-container" *ngIf='!loadedSpinner'>
     <mat-table #aircompressortable [dataSource]="dataSource" *ngIf="dataSource.data.length">
         <ng-container matColumnDef="{{header.value}}" *ngFor="let header of headerWithColumns">
             <mat-header-cell *matHeaderCellDef> {{header.headers}} </mat-header-cell>

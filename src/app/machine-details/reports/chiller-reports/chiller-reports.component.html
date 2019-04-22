@@ -118,7 +118,7 @@
           
   </div>
 
-  <div class="col-md-12" *ngIf='!airData["net_heat_removed"] || !loadedSpinner'>
+  <div class="col-md-12" *ngIf='!airData["net_heat_removed"] && !loadedSpinner'>
     <div class="no-record">
          No Records Found
     </div>

@@ -39,8 +39,8 @@ export class AirCompressorService {
     x2: number[] = this.getEmptyArray(24);
   //  const x3 : string [] = [];
   //  const x4 : string [] = [];
-   const x3 : number[] = this.getEmptyArray(24);
-   const x4 : number[] = this.getEmptyArray(24);
+   const x3 : number[] = []; //this.getEmptyArray(24);
+   const x4 : number[] = [];//this.getEmptyArray(24);
     this.lineLabel.length = 0;
       map(data, (item: any) => {
         const start = new Date(item["start_time"]).getHours();
@@ -55,8 +55,8 @@ export class AirCompressorService {
         
       });
       return [
-        { data: [...x3], label: "Air Volume" }   ,
-        { data: [...x4], label: "Compressed Volume" }   
+        { data: [...x3], label: "Total Air Flow" }   ,
+        { data: [...x4], label: "Compressed Air Volume" }   
       ];
   }
 
@@ -64,10 +64,12 @@ export class AirCompressorService {
     return {
       colors: [
         {
-          borderColor: "#0066ff"
+          borderColor: "#0066ff",
+          backgroundColor:'transparent',
         },
         {
-          borderColor: "#d9534f"
+          borderColor: "#d9534f",
+          backgroundColor:'transparent',
         }
       ],
       labels: this.getHours(24), //this.lineLabel
@@ -86,7 +88,7 @@ export class AirCompressorService {
               min : 0
             },
             scaleLabel: {
-              display: true,
+              display: false,
               labelString: 'Production Data',
               fontColor: '#3e6ceb',
               min : 0              
@@ -153,7 +155,7 @@ export class AirCompressorService {
               min : 0,
             },
             scaleLabel: {
-              display: true,
+              display: false,
               labelString: 'Energy Consumption',
               fontColor: '#3e6ceb',
               min : 0              

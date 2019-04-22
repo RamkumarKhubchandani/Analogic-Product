@@ -224,7 +224,7 @@ export class SelectionComponent implements OnInit {
   }
 
   onSelectMachine(event:number) {
-    this.getInsights(event,"");
+    this.getInsights(event,this.dbType);
   }
 
   getInsights(machineID:number,dbType : string){

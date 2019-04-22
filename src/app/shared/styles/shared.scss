@@ -11,7 +11,7 @@
         text-align: center;
     }
     mat-cell {
-        text-align: center;
+        text-align: right;
     }
     .mat-table {
         overflow: auto;
@@ -199,4 +199,27 @@
     display: inline-block;
     width: 45%;
     text-align: left;
+}
+
+
+.example-container,.mat-elevation-z8 {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+}
+mat-header-cell {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+mat-cell {
+    text-align: right;
+}
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+.mobile-label {
+    display: none;
 }
